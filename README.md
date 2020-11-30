@@ -8,7 +8,6 @@ This repository has contains a packages which allows to create your own bootstra
 When you get the package, to get the node_modules :
 ```
 npm install
-
 ```
 
 ### References
