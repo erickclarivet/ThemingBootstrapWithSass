@@ -1,4 +1,4 @@
-# readme
+# Theming Boostrap with Sass
 
 This repository has contains a packages which allows to create your own bootstrap theme with SASS.
 
