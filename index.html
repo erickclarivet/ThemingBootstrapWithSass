@@ -1,0 +1,74 @@
+<!--
+AVANT DE COMMENCER :
+- "npm install" pour récuperer les modules installer si le projet a dejà un package.json
+SUJET PRINCIPAL:
+https://getbootstrap.com/docs/4.5/getting-started/theming/
+Installation de sass avec nodejs :
+- npm install -g sass
+Sass est intégrée de base dans bootstrap, permet de :
+1. Personnaliser des variables  (couleurs, espace lors de padding ou margin...)
+2. Créer de nouvelles fonctionnalités (créer des grilles spéciales => ex user qui serait du 12x10)
+3. Créer ses propre thèmes.
+Pour l'utiliser il faut node.js et lui dire d'intaller bootstrap dans notre projet, pour créer notre propre feuille de style.
+Que faire ?
+1. Ouvrir un cmd :
+- "npm init" 
+- choisir un nom de package/projet ensuite 
+Un ajout d'un package.json est créé
+2. faire 'npm install bootstrap --save', et aussi jquery et popper
+Un repertoir 'node_modules' va apparaitre et notemment dans bootstrap le dossier 'scss'
+3. NE PAS MODIFIER ces fichier !! On crée notre propre fichier à la racine de notre projet 'default.scss'.
+En scss, le "!default" veut dire que si aucune valeur n'est définie alors la valeur de la variable aura celle la ex :
+$white = #fff !default
+4. Dans ce fichier custom on peut :
+- importer tout bootstrap
+- ou  juste les functionnalités nécessaires et celles que l'ont veut modifier.
+5. on va ajouter la ligne dans le scss pour importer tout bootstrap
+5. Pour transformer notre fichie scss en css il faut :
+- "sass --watch default.scss default.css" => chaque fois qu'on save le default.scss, cela est transformé dans le css pas besoin de refaire la manip.
+- sinon sass "default.scss default.css" suffit. => tout le css importer dans le fichier scss sera dans le default.css.
+6. si maintenant on remplace le css dans le link, rien n'aura changé.
+ASTUCE : Dans le default.css on a une version un peut lourde, on peut y remédier en faisant :
+- "sass --watch default.scss default.css --style compressed" 
+7. Si on override une valeur de variables, il faut absolument le faire avant l'importation bootstrap sinon elle sera écrasé par les valeurs par défault de bootstrap.
+- on change donc "primary","info" et "secondary" et si on save, on a un nouveau css avec nouveau thème alors que le code html n'a pas changé
+=> Donc on comprend que nos "thèmes bootstrap" (dans le css boostrap) ne sont que des valeurs générées par une clé - valeur du .scss
+8. On peut créer un thème avec une nouvelle couleur et ajouter une nouvelle clé valeur dans le "theme-colors" et on pourra donc utiliser "bg-penny"
+9. Pour savoir quelle variable on peut modifier aller dans "_variable.css", copier coller dans votre default.css.
+=> En général on touche majoritairement à theme-colors
+ATTENTION : Toujours penser à modifier votre scss et non celui présent dans le module !!
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Mon thème</title>
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="default.css">
+    </head>
+    <body class="bg-primary">
+        <h1 class="text-center text-info">Mon thème</h1>
+        <section class="bg-secondary pb-3 pt-5 mt-4">
+            <div style="width: 400px" class="container">
+                <h2 class="text-white">Contactez-nous</h2>
+                <!-- ICI : formulaire -->
+                <form>
+                    <div class="form-group">
+                        <label for="email" class="text-white">Adresse email</label>
+                        <input name="email" type="email" placeholder="Entrez votre adresse email" class="form-control" />
+                        <div class="form-text text-muted">Nous ne partagerons pas votre adresse email.</div> <!-- Adding text for the user -->
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="text-white bg-penny">Message</label>
+                        <textarea class="form-control" name="email"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="text-white btn btn-outline-light">Soumettre</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>
